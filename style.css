@@ -1,414 +1,825 @@
-/* Algemene instellingen */
-body, html {
-    height: 100%;
-    margin: 0;
-    font-family: 'Arial', sans-serif; /* Simpel lettertype */
-}
-
-/* De kleur geel uit het voorbeeld */
+/* ==========================================================================
+   1. CORE & VARIABELEN
+   ========================================================================== */
 :root {
     --theme-green: #627553;
+    --theme-green-hover: #4e5e42;
+    --dark-blue: #021945;
+    --light-bg: #f8f9fa;
+    --white: #ffffff;
+    --text-muted: #666666;
 }
 
-/* --- LINKERKANT STYLING --- */
+body, html {
+    /*height: 100vh;*/
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-blue);
+    background-color: var(--white);
+    height: 100%;
+    overflow-y: auto;
+}
+
+/* ==========================================================================
+   2. HOMEPAGE LAYOUT (SPLIT SCREEN)
+   ========================================================================== */
+.container-fluid.vh-100 {
+    height: 100vh !important;
+    --bs-gutter-x: 0rem;
+}
+
 .left-section {
-    padding: 50px;
+    padding: 5%;
 }
 
-.content-box {
-    max-width: 600px; /* Iets breder gemaakt voor de grotere tekst */
-    margin: 0 auto;
+.content-wrapper {
+    max-width: 550px;
+    margin-left: 10%;
 }
 
 .main-name {
-    color: #021945;
+    color: var(--dark-blue);
     font-weight: 900;
-    font-size: 5rem; /* Stuk groter (was 3.5rem) */
+    font-size: clamp(3rem, 8vw, 5.5rem);
     text-transform: uppercase;
-    line-height: 1;
-    margin-bottom: 25px;
+    line-height: 0.85;
 }
 
-/* Dit zorgt voor het omlijnde effect bij de naam */
 .outline-text {
-    color: white;
-    -webkit-text-stroke: 3px var(--theme-green); /* Iets dikkere rand voor de grotere tekst */
+    color: transparent;
+    -webkit-text-stroke: 2px var(--theme-green);
+}
+
+.job-tag-container {
+    margin: 25px 0 35px 0;
 }
 
 .job-title {
     background-color: var(--theme-green);
-    color: #021945;
-    padding: 10px 15px; /* Iets meer padding */
-    font-weight: bold;
+    color: white;
+    padding: 8px 20px;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 2px;
     display: inline-block;
-    margin-bottom: 30px;
-    font-size: 1.1rem; /* Groter (was 0.9rem) */
 }
 
 .description {
-    color: #666;
-    margin-bottom: 40px;
-    font-size: 1.1rem; /* Groter (was 0.9rem) */
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    color: var(--text-muted);
 }
 
-/* De knop styling */
+/* DE FOTO FIX: Vult nu de volledige col-md-6 */
+.right-section {
+    height: 100vh;
+    padding: 0 !important; /* Verwijder de padding van de kolom */
+    overflow: hidden;
+}
+
+.profile-pic-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 50% centreert horizontaal, 0% dwingt de bovenkant van de foto naar de bovenkant van het scherm */
+    object-position: center 50%;
+    display: block;
+}
+
+/* ==========================================================================
+   3. KNOPPEN & MENU
+   ========================================================================== */
 .btn-custom {
     background-color: var(--theme-green);
-    color: #021945;
+    color: white !important;
     font-weight: bold;
-    border-radius: 50px;
-    padding: 15px 40px; /* Grotere knop */
+    padding: 12px 30px;
+    border-radius: 5px;
     border: none;
-    text-transform: uppercase;
-    font-size: 1.2rem; /* Grotere tekst in de knop */
+    transition: 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.btn-custom:hover {
-    background-color: #819268;
-    color: #021945;
+.btn-custom:hover { background-color: var(--theme-green-hover); }
+
+.btn-outline-custom {
+    border: 2px solid var(--theme-green);
+    color: var(--theme-green);
+    font-weight: bold;
+    padding: 10px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    display: inline-block;
 }
 
-/* --- RECHTERKANT STYLING --- */
-.right-section {
-    /* Vervang deze URL straks door jouw eigen foto */
-    background-image: url('./Bijlage/samir.jpg');
-    background-size: cover;
-    background-position: center;
-    position: relative; /* Nodig om het menu te positioneren */
-    min-height: 50vh; /* Zorgt dat hij op mobiel ook zichtbaar is */
+.btn-outline-custom:hover {
+    background-color: var(--theme-green);
+    color: white;
 }
 
-/* Het zwevende menu */
 .floating-menu {
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 50%;
-    transform: translateY(-50%); /* Precies in het midden zetten */
+    transform: translateY(-50%);
     background-color: var(--theme-green);
     border-radius: 50px;
     padding: 15px 10px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    z-index: 1001;
 }
 
-.floating-menu a {
-    color: #021945;
-    font-size: 1.2rem;
-    text-align: center;
-    transition: 0.3s;
-}
+.floating-menu a { color: white; font-size: 1.2rem; }
 
-.floating-menu a:hover {
-    color: white;
-}
-
-/* --- ABOUT PAGE STYLING --- */
-
-/* Sidebar Layout */
-.sidebar-photo {
+/* ==========================================================================
+   SIDEBAR & NAVIGATIE (Overige pagina's)
+   ========================================================================== */
+/* ==========================================================================
+   SIDEBAR FIX
+   ========================================================================== */
+.row {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 50px;
-    padding-bottom: 30px;
+    align-items: stretch;
+}
+
+.sticky-sidebar {
+    position: fixed;
     background-color: var(--theme-green);
+    top: 0;
+    height: 100vh; /* 🔥 BELANGRIJK */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-photo {
+    padding: 60px 20px 30px;
+    text-align: center;
 }
 
 .sidebar-photo img {
-    width: 350px;  /* Iets groter gemaakt (was 180px) */
-    height: 350px; /* Moet gelijk zijn aan width voor een vierkant/rondje */
+    width: 180px;
+    height: 180px;
     object-fit: cover;
-    border-radius: 50%; /* Dit maakt hem helemaal rond (zoals in veel portfolios) */
-    border: 5px solid rgba(255, 255, 255, 0.2); /* Mooi randje eromheen */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 50%;
+    border: 6px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: 20px;
 }
 
+.profile-name {
+    color: white;
+    font-weight: 800;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.profile-role {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Navigatie uitlijning */
 .sidebar-nav {
-    background-color: var(--theme-green); /* Gele achtergrond */
-    padding: 20px 0;
+    flex-grow: 1; /* Neemt de rest van de ruimte in */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Zet de links netjes in het verticale midden */
+    padding: 40px 0;
 }
 
-/* --- MENU CONTAINER (Deze ontbrak!) --- */
 .nav-links {
     display: flex;
-    flex-direction: column; /* BELANGRIJK: Dit zet ze onder elkaar */
-    align-items: center;    /* Dit centreert ze horizontaal */
-    gap: 20px;              /* Ruimte tussen de linkjes */
-    width: 100%;
-    margin-top: 20px;
+    flex-direction: column;
+    align-items: center; /* Centreert de links horizontaal */
+    gap: 25px; /* Ruimte tussen de menu-items */
 }
 
-/* Navigatie links (met stippellijn effect) */
 .nav-links a {
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
-    color: #021945; /* Of wit, als dat beter staat op jouw groen */
-
-    /* Nieuw lettertype instellingen */
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Lekker dikgedrukt */
-    font-size: 1.1rem; /* Stuk groter (was 0.9rem) */
-    letter-spacing: 1px; /* Letters ietsje uit elkaar */
-    text-transform: uppercase;
-
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
     position: relative;
-    padding: 15px 0; /* Meer ruimte tussen de links */
-    transition: 0.3s;
 }
 
-/* Hover effect voor de links */
-.nav-links a:hover {
-    transform: scale(1.1); /* Wordt iets groter als je erover muist */
-    color: white; /* Kleurverandering bij hover */
-}
-
-/* De stippellijn in het midden van het menu */
-.nav-links::before {
-    content: '';
-    position: absolute;
-    height: 40%; /* Hoogte van de stippellijn */
-    border-left: 1px dashed #021945;
-    z-index: 0;
-    opacity: 0.3;
-}
-
+.nav-links a:hover,
 .nav-links a.active {
-    text-decoration: underline; /* De huidige pagina onderstreept */
+    color: white;
+    transform: translateX(5px);
 }
 
-/* Content Rechts */
-.about-header {
-    border: none; /* Geen stippellijnen meer */
-    background-color: transparent; /* Geen grijze achtergrond */
-    text-align: center;
-    margin-bottom: 3rem; /* Wat ruimte eronder */
-    padding: 0;
-}
-
-.about-header h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800; /* Extra dik */
-    font-size: 3.5rem;
-    color: #021945; /* Je donkerblauwe kleur */
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    position: relative;
-    display: inline-block;
-    margin: 0;
-}
-
-/* Het groene streepje onder de tekst */
-.about-header h1::after {
+/* Een subtiel streepje onder de actieve link */
+.nav-links a.active::after {
     content: '';
-    display: block;
-    width: 60px; /* Hoe breed het streepje is */
-    height: 6px; /* Hoe dik het streepje is */
-    background-color: var(--theme-green);
-    margin: 15px auto 0; /* Centreert het streepje */
-    border-radius: 10px; /* Rondt het streepje af */
-}
-
-/* Stats Box (Zwart blok) */
-.stats-box {
-    margin-top: 50px;
-    background-color: #021945;
-    border: 5px solid var(--theme-green);
-    border-radius: 10px;
-}
-
-.text-yellow {
-    color: var(--theme-green);
-    font-weight: bold;
-}
-
-/* Iconen bij "What I do" */
-.icon-box {
-    font-size: 1.5rem;
-    color: #666;
-}
-
-/* --- PORTFOLIO PROJECTEN STYLING --- */
-
-.project-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 15px; /* Iets ronder, past beter bij je profielfoto */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1); /* Iets meer diepte */
-    cursor: pointer;
-    height: 100%; /* Zorgt dat de kaart de hele hoogte pakt */
-}
-
-.project-card img {
-    transition: transform 0.5s ease;
-    width: 100%;
-    height: 350px; /* Vaste hoogte zodat ze gelijk zijn */
-    object-fit: cover; /* Voorkomt vervorming */
-    display: block;
-}
-
-/* Hover effect: Foto zoomt een beetje in */
-.project-card:hover img {
-    transform: scale(1.05);
-}
-
-/* De tekst over de foto (optioneel, verschijnt bij hover) */
-.project-overlay {
     position: absolute;
-    bottom: 0;
+    bottom: -5px;
     left: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Halftransparant zwart */
-    color: white;
-    padding: 10px;
-    text-align: center;
-    opacity: 0; /* Standaard onzichtbaar */
-    transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-overlay {
-    opacity: 1; /* Zichtbaar als je eroverheen muist */
-}
-
-/* --- CONTACT PAGE STYLING --- */
-
-.contact-icon-box {
-    font-size: 3.5rem; /* Groot icoon */
-    color: #021945;
-    /* Als je ze echt als lijntjes wilt (outline), gebruiken we deze truc: */
-    -webkit-text-stroke: 1px #021945;
-    color: transparent; /* Maakt de binnenkant doorzichtig */
-}
-
-/* Voor het telefoon icoon werkt fill soms beter, of gewoon solide kleur: */
-/* Als je ze liever gewoon zwart wilt, haal dan de 'color: transparent' weg hierboven */
-
-.contact-info p {
-    font-size: 0.9rem;
-    color: #021945;
-    letter-spacing: 1px;
-}
-
-/* --- RESUME / CARRIERE PAGE STYLING --- */
-
-/* Het gele blokje met het jaartal */
-.resume-badge {
-    background-color: var(--theme-green);
-    color: white; /* Of zwart, afhankelijk van wat je mooier vindt */
-    padding: 5px 15px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    display: inline-block; /* Zorgt dat het blokje mooi om de tekst past */
-    margin-bottom: 5px;
-}
-
-/* De stippellijn tussen Education en Experience */
-.dashed-divider {
-    border: 0;
-    border-top: 2px dashed #ccc; /* Grijze stippels */
-    opacity: 0.5;
-}
-
-/* Zorg dat de titels (Education/Experience) goed opvallen */
-.resume-section h3 {
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Plak dit onderaan style.css */
-.stats-box {
-    min-height: 450px; /* Dit dwingt het vak om minimaal zo hoog te zijn */
-    border-radius: 10px; /* Ziet er net iets moderner uit */
-}
-
-.text-white-50 {
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
-/* --- STIPPELLIJNEN IN STATS BOX --- */
-
-/* De horizontale lijn tussen boven en onder */
-.border-dashed-bottom {
-    border-bottom: 1px dashed rgba(255, 255, 255, 0.4);
-}
-
-/* De verticale lijn in het midden van de bovenste rij */
-.border-dashed-right {
-    border-right: 1px dashed rgba(255, 255, 255, 0.4);
-}
-
-/* Het kleine lijntje boven het onderste getal (optioneel, voor 'verbinding') */
-.border-dashed-top-small {
-    position: relative;
-}
-.border-dashed-top-small::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 20px; /* Lengte van het lijntje naar boven */
-    border-left: 1px dashed rgba(255, 255, 255, 0.4);
-}
-
-/* Zorgt dat de layout niet verschuift */
-.stats-box {
-    min-height: 450px;
-    border-radius: 10px;
-}
-
-/* --- NIEUWE CONTACT PAGINA STYLING --- */
-
-/* Kaartjes om de contact info (email/tel/linkedin) */
-.contact-card {
-    transition: transform 0.3s ease;
-}
-
-.contact-card:hover {
-    transform: translateY(-5px); /* Beweegt iets omhoog bij hover */
-}
-
-/* Aanpassing iconen: Zorg dat ze gecentreerd staan */
-.contact-icon-box {
-    font-size: 2.5rem;
-    color: var(--theme-green); /* Jouw groene kleur */
-    display: flex;
-    justify-content: center;
-}
-
-/* Het formulier */
-.border-dashed-box {
-    border: 2px dashed #ccc; /* Past bij de stijl van de andere pagina's */
-}
-
-.custom-input {
-    border: 1px solid #ddd;
-    padding: 12px;
-    background-color: #f9f9f9;
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-}
-
-.custom-input:focus {
-    border-color: var(--theme-green);
-    box-shadow: none;
+    height: 2px;
     background-color: white;
 }
 
-/* Zorg dat de knop past bij de rest */
+/* ==========================================================================
+   MOBIEL
+   ========================================================================== */
+@media (max-width: 768px) {
+    .right-section { display: none; }
+    .left-section { width: 100%; text-align: center; }
+    .content-wrapper { margin: 0 auto; }
+    .floating-menu { display: none; }
+}
+
+/* ==========================================================================
+   1. CORE & VARIABELEN
+   ========================================================================== */
+:root {
+    --theme-green: #627553;
+    --theme-green-hover: #4e5e42;
+    --dark-blue: #021945;
+    --light-bg: #f8f9fa;
+    --white: #ffffff;
+}
+
+body, html {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--white);
+}
+
+.text-theme-green { color: var(--theme-green) !important; }
+.text-dark-blue { color: var(--dark-blue) !important; }
+
+/* ==========================================================================
+   2. SIDEBAR NAVIGATIE (DE FIX VOOR HOOGTE)
+   ========================================================================== */
+.sticky-sidebar {
+    background-color: var(--theme-green);
+    min-height: 100vh; /* Altijd minimaal schermhoogte */
+    height: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.sidebar-photo {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 15px;
+}
+
+.profile-name { color: white; font-weight: 800; font-size: 1.4rem; margin-bottom: 5px; }
+.profile-role { color: rgba(255, 255, 255, 0.8); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.sidebar-nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: white;
+    transform: translateX(5px);
+}
+
+/* ==========================================================================
+   3. CONTACT CARDS & FORM
+   ========================================================================== */
+.contact-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px 5px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    transition: 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--theme-green);
+}
+
+.contact-icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: var(--light-bg);
+    color: var(--theme-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+}
+
+.custom-input {
+    background-color: #f9fbf8;
+    border: 1px solid #e9eee8;
+    padding: 10px 13px;
+    border-radius: 8px;
+}
+
+.custom-input:focus {
+    box-shadow: none;
+    border-color: var(--theme-green);
+}
+
 .btn-custom {
     background-color: var(--theme-green);
-    color: #021945;
+    color: white;
     font-weight: bold;
-    border-radius: 50px;
-    padding: 10px 40px;
-    border: none;
+    border-radius: 8px;
     transition: 0.3s;
 }
 
 .btn-custom:hover {
-    background-color: #4e5e42; /* Iets donkerder groen */
-    color: #021945;
+    background-color: var(--theme-green-hover);
+    color: white;
+}
+
+/* Header styling */
+.about-header h1 {
+    font-weight: 800;
+    font-size: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.about-header h1::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 5px;
+    background-color: var(--theme-green);
+    margin: 5px auto 0;
+    border-radius: 10px;
+}
+
+
+/* Gecentreerde Service Cards */
+.service-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center; /* Centreert alle tekst */
+    display: flex;
+    flex-direction: column; /* Zet icoon boven de tekst */
+    align-items: center;    /* Centreert items horizontaal */
+    justify-content: center;
+    height: 100%;
+    transition: 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--theme-green);
+}
+
+/* Icoon styling aanpassen voor centrering */
+.service-card .icon-box {
+    margin: 0 0 20px 0 !important; /* Haalt de margin-rechts weg en zet hem onder het icoon */
+    color: var(--theme-green);
+}
+
+/* ==========================================================================
+   CARRIÈRE PAGINA - TIMELINE & LOGO FIXES
+   ========================================================================== */
+
+/* De container voor de tijdlijn */
+.timeline {
+    border-left: 3px solid #eee;
+    padding-left: 60px; /* Ruimte voor logo en bolletje */
+    margin-left: 30px;
+    position: relative;
+    padding-top: 10px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: flex-start; /* Zorgt dat logo en tekst bovenin uitlijnen */
+}
+
+/* De groene bolletjes op de tijdlijn-lijn */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -68.5px; /* Precies op de lijn uitgelijnd */
+    top: 35px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--theme-green);
+    border: 3px solid white;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+/* School Logo's (Educatie) */
+.career-logo {
+    width: 85px;
+    height: 85px;
+    min-width: 85px; /* Voorkomt dat het logo wordt platgedrukt */
+    background-color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.08);
+    margin-right: 25px;
+    padding: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.career-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Tekstblok naast het logo */
+.timeline-content {
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   ERVARING CARDS (ONDERAAN)
+   ========================================================================== */
+
+.experience-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.03);
+    height: 100%;
+    text-align: center; /* Alles in de kaart centreren */
+}
+
+.experience-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--theme-green);
+}
+
+/* Werk Logo's in de kaarten */
+.career-logo-small {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 15px;
+}
+
+.career-logo-small img {
+    max-width: 120px;
+    max-height: 60px;
+    object-fit: contain;
+}
+
+/* Badges (Datum labels) */
+.resume-badge {
+    background-color: var(--theme-green);
+    color: white;
+    padding: 4px 12px;
+    font-weight: bold;
+    font-size: 0.75rem;
+    border-radius: 4px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+/* Divider styling */
+.dashed-divider {
+    border-top: 2px dashed #ddd;
+    opacity: 0.5;
+}
+
+/* Iconen voor de secties (Educatie/Ervaring) */
+.section-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--theme-green);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+}
+
+/* ==========================================================================
+   PROJECTEN PAGINA - CARDS & GRID
+   ========================================================================== */
+
+/* Zorgt dat alle kaarten in een rij even hoog zijn */
+.projects-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden; /* Zorgt dat de afbeelding niet buiten de bocht gaat */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    height: 100%; /* Dwingt de kaart om de volle hoogte van de kolom te vullen */
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hover effect voor de kaarten */
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: var(--theme-green);
+}
+
+/* Afbeelding in de kaart */
+.project-img-wrapper {
+    width: 100%;
+    height: 220px; /* Vaste hoogte voor uniformiteit */
+    overflow: hidden;
+    background-color: #f0f0f0;
+}
+
+.project-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Zorgt dat de foto het vlak vult zonder te vervormen */
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img-wrapper img {
+    transform: scale(1.1); /* Zoomt een beetje in bij hover */
+}
+
+/* Inhoud van de kaart */
+.project-body {
+    padding: 25px;
+    flex-grow: 1; /* Zorgt dat de tekstruimte meegroeit */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-title {
+    font-weight: 800;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.project-description {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Project categorie/tag boven de titel */
+.project-category {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--theme-green);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Knop onderaan de kaart */
+.btn-project {
+    border: 2px solid var(--theme-green);
+    color: var(--theme-green);
+    background: transparent;
+    padding: 8px 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-project:hover {
+    background-color: var(--theme-green);
+    color: white;
+}
+
+
+
+/* ==========================================================================
+   PROJECT DETAIL PAGINA (Dashboard CV)
+   ========================================================================== */
+
+.project-wrapper {
+    background-color: var(--white);
+    min-height: 100vh;
+}
+
+/* Terugknop styling */
+.back-btn {
+    display: inline-block;
+    color: var(--theme-green);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 30px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    color: var(--dark-blue);
+    transform: translateX(-5px);
+}
+
+/* Grote Project Afbeelding */
+.project-img {
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    margin: 40px 0;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Project Info Sectie */
+.project-detail h1 {
+    font-size: 3.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 10px;
+}
+
+.project-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+    padding: 30px;
+    background-color: var(--light-bg);
+    border-radius: 15px;
+    text-align: left;
+}
+
+.info-item h6 {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--theme-green);
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    margin: 0;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+/* Navigatie onderaan (Volgend/Vorig project) */
+.project-nav {
+    border-top: 1px solid #eee;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-project {
+    text-decoration: none;
+    color: var(--dark-blue);
+    transition: 0.3s;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.nav-project:hover {
+    background-color: var(--light-bg);
+}
+
+.nav-project.left { text-align: left; }
+.nav-project.right { text-align: right; }
+
+.nav-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--theme-green);
+    text-transform: uppercase;
+}
+
+.nav-project h6 {
+    margin: 5px 0 0;
+    font-weight: 800;
+}
+
+/* --- PROJECT DETAIL LAYOUT --- */
+
+.back-btn {
+    text-decoration: none;
+    color: var(--theme-green);
+    font-weight: 600;
+    display: inline-block;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    transform: translateX(-5px);
+}
+
+/* De horizontale balk met info */
+.project-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 gelijke kolommen */
+    gap: 20px;
+    background-color: #f8f9fa;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--theme-green);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-weight: 600;
+    color: var(--dark-blue);
+}
+
+.project-image-container img {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-link-item {
+    text-decoration: none;
+    color: var(--dark-blue);
+    transition: 0.3s;
+}
+
+.nav-link-item:hover {
+    color: var(--theme-green);
+}
+
+/* Mobiel fix: op kleine schermen info onder elkaar */
+@media (max-width: 768px) {
+    .project-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .project-detail h1 { font-size: 2.5rem; }
 }

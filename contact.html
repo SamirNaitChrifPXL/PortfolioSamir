@@ -2,22 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Samir Nait Chrif - Contact</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container-fluid h-100">
-    <div class="row h-100">
-
-        <div class="col-md-3 p-0 d-flex flex-column h-100 sticky-sidebar">
-            <div class="sidebar-photo">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3 p-0 sticky-sidebar">
+            <div class="sidebar-photo text-center">
                 <img src="Bijlage/Samir.jpg" alt="Samir" class="profile-pic">
+                <h4 class="profile-name">Samir Nait Chrif</h4>
+                <p class="profile-role">Digital Design Student</p>
             </div>
 
-            <div class="sidebar-nav flex-grow-1 d-flex flex-column justify-content-center align-items-center">
+            <div class="sidebar-nav">
                 <nav class="nav-links">
                     <a href="index.html">HOME</a>
                     <a href="about_me.html">OVER MIJ</a>
@@ -29,73 +32,83 @@
         </div>
 
         <div class="col-md-9 bg-light p-5 right-content scrollable-content">
-
             <div class="about-header text-center mb-5">
                 <h1 class="fw-bold">CONTACT</h1>
             </div>
 
-            <div class="mb-5 text-center">
-                <h3 class="fw-light">Voel je vrij om mij te contacteren!</h3>
-                <p class="text-secondary mt-3 col-lg-8 mx-auto">
-                    Heb je een vraag over mijn portfolio of wil je samenwerken aan een project?
-                    Vul het formulier in, stuur een mailtje of connect via LinkedIn.
-                </p>
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10 text-center">
+                    <h3 class="fw-light mb-3">Laten we samen iets <span class="fw-bold text-theme-green">moois</span> maken.</h3>
+                    <p class="text-secondary mx-auto" style="max-width: 700px;">
+                        Heb je een vraag over mijn werk, een project in gedachten of wil je gewoon even kennismaken?
+                        Stuur me een berichtje en ik kom zo snel mogelijk bij je terug.
+                    </p>
+                </div>
             </div>
 
-            <div class="row justify-content-center mb-5 text-center">
-
-                <div class="col-md-4 mb-4">
-                    <div class="contact-card p-3">
-                        <div class="contact-icon-box mb-3">
-                            <i class="fas fa-envelope"></i>
+            <div class="row justify-content-center g-4 mb-5">
+                <div class="col-md-4">
+                    <a href="mailto:Samirnaitchrif@gmail.com" class="text-decoration-none">
+                        <div class="contact-card h-100">
+                            <div class="contact-icon-box">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark-blue">EMAIL</h6>
+                            <span class="text-theme-green fw-bold small">Samirnaitchrif@gmail.com</span>
                         </div>
-                        <h6 class="fw-bold">EMAIL</h6>
-                        <a href="mailto:Samirnaitchrif@gmail.com" class="text-decoration-none text-dark small">Samirnaitchrif@gmail.com</a>
-                    </div>
+                    </a>
                 </div>
 
-                <div class="col-md-4 mb-4">
-                    <div class="contact-card p-3">
-                        <div class="contact-icon-box mb-3">
-                            <i class="fas fa-phone-alt"></i>
+                <div class="col-md-4">
+                    <a href="tel:+32491318171" class="text-decoration-none">
+                        <div class="contact-card h-100">
+                            <div class="contact-icon-box">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark-blue">TELEFOON</h6>
+                            <span class="text-theme-green fw-bold small">+32 4 9131 8171</span>
                         </div>
-                        <h6 class="fw-bold">TELEFOON</h6>
-                        <p class="mb-0 small">+32 4 9131 8171</p>
-                    </div>
+                    </a>
                 </div>
 
-                <div class="col-md-4 mb-4">
-                    <div class="contact-card p-3">
-                        <div class="contact-icon-box mb-3">
-                            <i class="fab fa-linkedin-in"></i>
+                <div class="col-md-4">
+                    <a href="https://www.linkedin.com/in/samir-nait-chrif-3b3970216/" target="_blank" class="text-decoration-none">
+                        <div class="contact-card h-100">
+                            <div class="contact-icon-box">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <h6 class="fw-bold text-dark-blue">LINKEDIN</h6>
+                            <span class="text-theme-green fw-bold small">Connect via LinkedIn</span>
                         </div>
-                        <h6 class="fw-bold">LINKEDIN</h6>
-                        <a href="https://www.linkedin.com/in/samir-nait-chrif-3b3970216/" target="_blank" class="text-decoration-none text-dark small">Connect met mij</a>
-                    </div>
+                    </a>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="bg-white p-4 rounded shadow-sm border-dashed-box">
-                        <h4 class="fw-bold mb-4 text-center">Stuur een bericht</h4>
-                        <form>
+                    <div class="form-container p-5 bg-white shadow-sm rounded-4">
+                        <h4 class="fw-bold mb-4 text-center text-dark-blue">Stuur een bericht</h4>
+                        <form action="#" method="POST">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-                                    <input type="text" class="form-control custom-input" placeholder="Je Naam">
+                                    <label class="form-label small fw-bold">Naam</label>
+                                    <input type="text" class="form-control custom-input" placeholder="Je naam" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <input type="email" class="form-control custom-input" placeholder="Je Email">
+                                    <label class="form-label small fw-bold">E-mail</label>
+                                    <input type="email" class="form-control custom-input" placeholder="Je e-mailadres" required>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control custom-input" placeholder="Onderwerp">
+                                <label class="form-label small fw-bold">Onderwerp</label>
+                                <input type="text" class="form-control custom-input" placeholder="Waar gaat het over?">
                             </div>
-                            <div class="mb-3">
-                                <textarea class="form-control custom-input" rows="4" placeholder="Je Bericht"></textarea>
+                            <div class="mb-4">
+                                <label class="form-label small fw-bold">Bericht</label>
+                                <textarea class="form-control custom-input" rows="5" placeholder="Vertel me wat meer over je project..." required></textarea>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-custom px-5">VERSTUUR</button>
+                                <button type="submit" class="btn btn-custom w-100 py-3">BERICHT VERSTUREN</button>
                             </div>
                         </form>
                     </div>
