@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Styling voor de klikbare afbeeldingen */
+    /* Styling voor de klikbare afbeeldingen (alleen voor logo's nu) */
     .img-zoom-container {
       cursor: pointer;
       overflow: hidden;
@@ -25,6 +25,10 @@
     .modal-body img {
       width: 100%;
       height: auto;
+    }
+    /* Specifieke stijl voor posters die niet klikken */
+    .poster-static {
+      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -64,48 +68,45 @@
     </div>
 
     <div class="row g-4 mb-5">
-
       <div class="col-md-4">
-        <div class="mb-4">
-          <div class="img-zoom-container mb-4" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/LCDP.png">
-            <img src="Bijlage/LCDP.png" class="img-fluid rounded-4 shadow-sm" alt="LCDP Poster">
-          </div>
-          <div class="img-zoom-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Cinderella.png">
-            <img src="Bijlage/Cinderella.png" class="img-fluid rounded-4 shadow-sm" alt="Cinderella Poster">
+        <div class="poster-static">
+          <img src="Bijlage/LCDP.png" class="img-fluid rounded-4 shadow-sm" alt="LCDP Poster">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="poster-static">
+          <img src="Bijlage/Cinderella.png" class="img-fluid rounded-4 shadow-sm" alt="Cinderella Poster">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="poster-static">
+          <img src="Bijlage/Dexter.png" class="img-fluid rounded-4 shadow-sm" alt="Dexter Poster">
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="bg-light p-5 rounded-4 border d-flex align-items-center justify-content-center h-100" style="min-height: 300px;">
+          <div class="img-zoom-container text-center" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/LidlLogo.png">
+            <img src="Bijlage/LidlLogo.png" class="img-fluid" style="width: 80%;" alt="Lidl Logo">
           </div>
         </div>
       </div>
 
       <div class="col-md-4">
-        <div class="mb-4">
-          <div class="img-zoom-container mb-4" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Dexter.png">
-            <img src="Bijlage/Dexter.png" class="img-fluid rounded-4 shadow-sm" alt="Dexter Poster">
-          </div>
-          <div class="bg-light p-5 rounded-4 border d-flex align-items-center justify-content-center" style="min-height: 300px;">
-            <div class="img-zoom-container text-center" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/LidlLogo.png">
-              <img src="Bijlage/LidlLogo.png" class="img-fluid" style="width: 80%; transform: scale(1.2);" alt="Lidl Logo">
-            </div>
-          </div>
+        <div class="bg-white p-4 rounded-4 border text-center mb-4 shadow-sm img-zoom-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Chargedlogo.png">
+          <img src="Bijlage/Chargedlogo.png" class="img-fluid" style="max-height: 250px;" alt="Charged Logo">
+        </div>
+
+        <div class="rounded-4 p-4 text-center shadow-sm d-flex align-items-center justify-content-center img-zoom-container h-50" style="background-color: #f4f4f4; border: 1px solid #ddd; min-height: 250px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/VincentVG_logo.png">
+          <img src="Bijlage/VincentVG_logo.png" class="img-fluid" style="width: 90%;" alt="Vincent Logo">
         </div>
       </div>
 
       <div class="col-md-4">
-        <div>
-          <div class="bg-white p-4 rounded-4 border text-center mb-4 shadow-sm img-zoom-container" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Chargedlogo.jpg">
-            <img src="Bijlage/Chargedlogo.jpg" class="img-fluid" style="max-height: 250px;" alt="Charged Logo">
-          </div>
-
-          <div class="mb-4">
-            <div class="rounded-4 p-4 text-center shadow-sm d-flex align-items-center justify-content-center img-zoom-container" style="background-color: #f4f4f4; border: 1px solid #ddd; min-height: 250px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/VincentVG_logo.png">
-              <img src="Bijlage/VincentVG_logo.png" class="img-fluid" style="width: 90%;" alt="Vincent Logo">
-            </div>
-          </div>
-
-          <div>
-            <div class="rounded-4 p-4 text-center shadow-sm d-flex align-items-center justify-content-center img-zoom-container" style="background-color: #f4f4f4; min-height: 250px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Jesselingard.png">
-              <img src="Bijlage/Jesselingard.png" class="img-fluid" style="width: 90%;" alt="Jesse Logo">
-            </div>
-          </div>
+        <div class="rounded-4 p-4 text-center shadow-sm d-flex align-items-center justify-content-center img-zoom-container h-100" style="background-color: #f4f4f4; min-height: 250px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-bs-img="Bijlage/Jesselingard.png">
+          <img src="Bijlage/Jesselingard.png" class="img-fluid" style="width: 90%;" alt="Jesse Logo">
         </div>
       </div>
     </div>
@@ -155,6 +156,6 @@
     modalImg.src = imgSrc;
   });
 </script>
-
+<script src="script.js"></script>
 </body>
 </html>
